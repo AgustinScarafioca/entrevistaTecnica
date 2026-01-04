@@ -4,17 +4,24 @@ from fastapi.responses import JSONResponse
 from starlette import status
 from fastapi.middleware.cors import CORSMiddleware
 
+from dotenv import load_dotenv
+import os
+
 from app.db.session import engine
 from app.db.base import Base
 from app.routers.persons import router as persons_router
 from app.core.errors import error_response
 
+load_dotenv()
+
+ALLOWED_ORIGINS = os.getenv("ALLOWED_ORIGINS", "*").split(",")
+
 Base.metadata.create_all(bind=engine)
 
-app = FastAPI(title="PmIT Challenge Backend with FastApi", version="1.0.0")
+app = FastAPI(title="PmIT Challenge Backend con FastApi", version="1.0.0")
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"], #mala practica pero lo hago porque no se en que puerto les levanta y para que sea menos engorrosa la revision.
+    allow_origins=[o.strip() for o in ALLOWED_ORIGINS],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -22,11 +29,9 @@ app.add_middleware(
 
 app.include_router(persons_router)
 
-
 @app.get("/health")
 def health():
     return {"status": "ok"}
-
 
 @app.exception_handler(RequestValidationError)
 async def validation_exception_handler(request: Request, exc: RequestValidationError):
@@ -37,14 +42,13 @@ async def validation_exception_handler(request: Request, exc: RequestValidationE
         details.append({"field": str(field), "message": e.get("msg", "Invalid value")})
 
     return JSONResponse(
-        status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
-        content=error_response("VALIDATION_ERROR", "Invalid request", details),
-    )
-
+    status_code=422,
+    content=error_response("VALIDATION_ERROR", "Invalid request", details),
+)
 
 @app.exception_handler(Exception)
 async def generic_exception_handler(request: Request, exc: Exception):
     return JSONResponse(
-        status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+        status_code=500,
         content=error_response("INTERNAL_ERROR", "Unexpected error"),
     )
