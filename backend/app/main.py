@@ -2,6 +2,7 @@ from fastapi import FastAPI, Request
 from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
 from starlette import status
+from fastapi.middleware.cors import CORSMiddleware
 
 from app.db.session import engine
 from app.db.base import Base
@@ -11,6 +12,13 @@ from app.core.errors import error_response
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="PmIT Challenge Backend with FastApi", version="1.0.0")
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"], #mala practica pero lo hago porque no se en que puerto les levanta y para que sea menos engorrosa la revision.
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 app.include_router(persons_router)
 
