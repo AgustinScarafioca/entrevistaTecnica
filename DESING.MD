@@ -52,3 +52,6 @@ Lista todas las personas registradas.
 
 - UI minimalista (sin librerías de diseño) para priorizar claridad y funcionalidad.
 - Validación duplicada (cliente + servidor): el servidor es la fuente de verdad, el cliente solo mejora UX.
+
+## Trade-offs
+- Estuve muy tentado a hacer una forma de eliminar una entrada de la lista pero opte por atenerme a la especificación proporcionada
