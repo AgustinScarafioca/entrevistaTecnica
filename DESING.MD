@@ -54,4 +54,4 @@ Lista todas las personas registradas.
 - Validación duplicada (cliente + servidor): el servidor es la fuente de verdad, el cliente solo mejora UX.
 
 ## Trade-offs
-- Estuve muy tentado a hacer una forma de eliminar una entrada de la lista pero opte por atenerme a la especificación proporcionada
+- Tuve la intencion a hacer una forma de eliminar una entrada de la lista pero opte por atenerme a la especificación proporcionada
