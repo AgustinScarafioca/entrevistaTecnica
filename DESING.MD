@@ -72,6 +72,8 @@ Lista todas las personas registradas.
 ## Frontend: React (Vite + TypeScript)**
   - Preferencia de TypeScript por sobre JavaScript para tipar y reducir errores de integración.
   - Separación simple: `api/` (cliente HTTP), `components/` (UI), `types/` (modelos).
+  - Acceso a API encapsulado en `src/api/`: en lugar de hacer `fetch()` directamente en componentes, se centraliza en funciones (`getPersons`, `createPerson`) y un wrapper `request<T>()` para unificar headers, base URL y manejo de errores.
+  - `useEffect` se utiliza solo para disparar la carga inicial del listado (`GET /personas`), manteniendo la lógica de red fuera de la UI.
   - Manejo de estados mínimos: `loading`, `error` y actualización del listado al crear.
 
 ## Flujo UI (Frontend)
@@ -79,11 +81,11 @@ Lista todas las personas registradas.
 - Formulario: `nombre` y `edad` con validación básica en cliente (UX).
 - Submit: `POST /personas`; en éxito se agrega al listado sin recargar; en error se muestra banner.
 - Estados contemplados: loading del listado, error de red/validación, empty state.
-
-- UI minimalista (sin librerías de diseño) para priorizar claridad y funcionalidad.
+- UI simple y clara usando **Bootstrap** (sin frameworks adicionales) para mejorar legibilidad y mantener el foco en funcionalidad.
 - Validación duplicada (cliente + servidor): el servidor es la fuente de verdad, el cliente solo mejora UX.
 
 ## Trade-offs
 - No se implementaron operaciones extra (update/delete) para mantenerse dentro de la especificación mínima.
 - No se implementó paginación server-side (solo UI) por simplicidad; en producción se haría GET /personas?limit=&offset= o cursor-based pagination.
 - No se implementó autenticación, rate limiting ni logging estructurado; en producción se agregarían según requerimientos.
+- No se implementó Docker / Docker Compose: es la tecnología que menos utilizo actualmente y, como suele definirse por convención al inicio del proyecto, preferí no incorporarla en una primera instancia. También evité agregarlo “al final” para no introducir cambios de infraestructura que pudieran romper el entorno o afectar la reproducibilidad de la entrega. Es un punto próximo a reforzar/aprender en profundidad en caso de que sea una herramienta utilizada por la empresa.
