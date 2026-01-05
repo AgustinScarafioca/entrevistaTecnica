@@ -79,9 +79,10 @@ Requiere:
     - Una vez corriendo se mostrara el puerto local donde se correra la aplicacion.
 9. Entrar a la aplicacion con el url/localhost proporcionado por la consola.
 
-Nota: Es posible, para evitar instalar las dependencias de python crear un venv corriendo dentro de la carpeta del backend:
-    - python -m venv .venv
-    - source .venv/Scripts/activate (solo desde git bash)
+> **Nota**: Es posible, para evitar instalar las dependencias de python crear un venv corriendo dentro de la carpeta del backend:
+```bash```
+- python -m venv .venv
+- source .venv/Scripts/activate (solo desde git bash)
 
 ## Modo de uso (local y deploy)
 Simplemente completar los datos requeridos por el formulario en pantalla para añadir entradas a la lista de personas.
