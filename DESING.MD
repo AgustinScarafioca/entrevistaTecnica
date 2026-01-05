@@ -64,7 +64,7 @@ Lista todas las personas registradas.
   }
 }
 
-### Decisiones técnicas
+## Decisiones técnicas
   -FastAPI + Pydantic: validación de entrada y docs automáticas (/docs).
   -SQLAlchemy: ORM para mantener separación entre modelos/datos y lógica de negocio, y facilitar migración SQLite - PostgreSQL sin cambiar la API.
   -CORS por env: ALLOWED_ORIGINS configurable (local vs deploy).
