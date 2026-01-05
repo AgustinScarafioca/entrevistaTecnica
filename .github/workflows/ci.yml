@@ -52,13 +52,13 @@ jobs:
           node-version: "20"
 
       - name: Install dependencies
-        working-directory: frontend
+        working-directory: frontend/pmit-challenge
         run: npm install
 
       - name: Run tests
-        working-directory: frontend
+        working-directory: frontend/pmit-challenge
         run: npm run test:run
 
       - name: Build
-        working-directory: frontend
+        working-directory: frontend/pmit-challenge
         run: npm run build
