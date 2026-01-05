@@ -26,15 +26,17 @@ Campos:
 Crea una persona.
 
 **Request**
-```json```
+```json
 { "nombre": "Agustin", "edad": 27 }
+```
 
 **201 Response**
-```json```
+```json
 { "id": 1, "nombre": "Agustin", "edad": 27, "created_at": "2026-01-04T12:00:00Z" }
+```
 
 **422 (Validation Error)**
-```json```
+```json
 {
   "error": {
     "code": "VALIDATION_ERROR",
@@ -44,25 +46,27 @@ Crea una persona.
     ]
   }
 }
+```
 
 ### GET /personas
 Lista todas las personas registradas.
 
 **200 Response**
-```json```
+```json
 [
   { "id": 1, "nombre": "Agustin", "edad": 27, "created_at": "2026-01-04T12:00:00Z" }
 ]
-
+```
 
 **500 (Internal Error)**
-```json```
+```json
 {
   "error": {
     "code": "INTERNAL_ERROR",
     "message": "Unexpected error"
   }
 }
+```
 
 ## Decisiones técnicas
   - FastAPI + Pydantic: validación de entrada y docs automáticas (/docs).
