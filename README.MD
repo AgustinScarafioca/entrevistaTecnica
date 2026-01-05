@@ -58,7 +58,7 @@ Importante: Render, donde esta hosteado el backend presenta un delay en cuentas 
 cuando se realice la revision es posible que suceda que no cargue la base de datos. 
 Una vez se ingrese por primera vez a la pagina de Vercel, esperar a que cargue la instancia de la base de datos.
 
-Backend
+## Backend
 Requiere:
     - Python 3.11+
     - Node.js 18+
@@ -72,7 +72,7 @@ Requiere:
     - Verificar funcionamiento chequeando que devuelva un status:ok la ruta `http://127.0.0.1:8000/health`
     - Tambien podemos verificar en la ruta `http://127.0.0.1:8000/docs`
 
-FrontEnd
+## FrontEnd
 5. Posicionarse en la carpeta de frontEnd desde otra consola: cd frontend
 6. Instalar dependencias corriendo npm install
 7. Crear archivo .env y completar con puerto donde se levanta el backend

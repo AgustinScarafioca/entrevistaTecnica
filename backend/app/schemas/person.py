@@ -2,14 +2,10 @@ from datetime import datetime
 from pydantic import BaseModel, Field, ConfigDict
 
 class PersonCreate(BaseModel):
-    nombre: str = Field(..., min_length=2, max_length=80, examples=['Agustin'])
-    edad: int = Field(..., ge=0, le=120, examples=[27])
+    model_config = ConfigDict(str_strip_whitespace=True)
 
-    @classmethod
-    def model_validate(cls, obj, **kwargs):
-        if isinstance(obj, dict) and "nombre" in obj and isinstance(obj["nombre"], str):
-            obj = {**obj, "nombre": obj["nombre"].strip()}
-        return super().model_validate(obj, **kwargs)
+    nombre: str = Field(..., min_length=2, max_length=80, examples=["Agustin"])
+    edad: int = Field(..., ge=0, le=120, examples=[27])
 
 class PersonOut(BaseModel):
     id: int

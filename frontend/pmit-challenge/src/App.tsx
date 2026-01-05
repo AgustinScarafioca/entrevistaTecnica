@@ -28,24 +28,61 @@ export default function App() {
     }, []);
 
     return (
-        <div style={{ maxWidth: 780, margin: "0 auto", padding: 20, display: "grid", gap: 16 }}>
-        <h2 style={{ margin: 0 }}>PmIT Challenge — Personas</h2>
+    <div className="container py-4" style={{ maxWidth: 900 }}>
+    <div className="d-flex align-items-center justify-content-between mb-3">
+        <div>
+        <h2 className="mb-1">PmIT Challenge — Personas</h2>
+        <div className="text-secondary small">Registrar y listar personas (FastAPI + React)</div>
+        </div>
 
-        {error ? <ErrorBanner message={error} onClose={() => setError("")} /> : null}
+        <button
+        onClick={loadPersons}
+        disabled={loading}
+        className="btn btn-outline-secondary"
+        type="button"
+        >
+        {loading ? (
+            <>
+            <span className="spinner-border spinner-border-sm me-2" aria-hidden="true"></span>
+            Actualizando...
+            </>
+        ) : (
+            "Actualizar lista"
+        )}
+        </button>
+    </div>
 
-        <div style={{ display: "grid", gap: 16, gridTemplateColumns: "1fr 1fr" }}>
+    {error ? (
+        <div className="mb-3">
+        <ErrorBanner message={error} onClose={() => setError("")} />
+        </div>
+    ) : null}
+
+    <div className="row g-3">
+        <div className="col-12 col-lg-6">
+        <div className="card shadow-sm">
+            <div className="card-body">
+            <h5 className="card-title mb-3">Crear persona</h5>
             <PersonForm
-            onCreated={(p) => setPersons((prev) => [p, ...prev])}
-            onError={setError}
+                onCreated={(p) => setPersons((prev) => [p, ...prev])}
+                onError={setError}
             />
-            <PersonList persons={persons} loading={loading} />
+            </div>
+        </div>
         </div>
 
-        <div style={{ display: "flex", gap: 8 }}>
-            <button onClick={loadPersons} disabled={loading} style={{ padding: 10, cursor: "pointer" }}>
-            Actualizar lista
-            </button>
+        <div className="col-12 col-lg-6">
+        <div className="card shadow-sm">
+            <div className="card-body">
+            <div className="d-flex align-items-center justify-content-between mb-2">
+                <h5 className="card-title mb-0">Listado</h5>
+                <span className="badge text-bg-secondary">{persons.length}</span>
+            </div>
+            <PersonList persons={persons} loading={loading} />
+            </div>
         </div>
         </div>
+    </div>
+    </div>
     );
 }

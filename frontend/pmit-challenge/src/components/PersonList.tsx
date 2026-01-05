@@ -7,19 +7,38 @@ type Props = {
 
 export function PersonList({ persons, loading }: Props) {
     return (
-        <div style={{ padding: 12, border: "1px solid #ddd", borderRadius: 8 }}>
-        <h3 style={{ marginTop: 0 }}>Personas registradas</h3>
-
-        {loading ? <p>Cargando...</p> : null}
-        {!loading && persons.length === 0 ? <p>No hay personas.</p> : null}
-
-        <ul style={{ paddingLeft: 18 }}>
-            {persons.map((p) => (
-            <li key={p.id} style={{ marginBottom: 8 }}>
-                <strong>{p.nombre}</strong> — {p.edad} años
-            </li>
-            ))}
-        </ul>
+    <div>
+        {loading ? (
+        <div className="py-4 text-center text-secondary">
+            <div className="spinner-border" role="status" aria-label="Cargando"></div>
+            <div className="mt-2 small">Cargando...</div>
         </div>
+        ) : persons.length === 0 ? (
+        <div className="py-4 text-center text-secondary">
+            <div className="small">No hay personas.</div>
+        </div>
+        ) : (
+        <div className="table-responsive">
+            <table className="table table-hover align-middle mb-0">
+            <thead className="table-light">
+                <tr>
+                <th style={{ width: 80 }}>ID</th>
+                <th>Nombre</th>
+                <th style={{ width: 120 }}>Edad</th>
+                </tr>
+            </thead>
+            <tbody>
+                {persons.map((p) => (
+                <tr key={p.id}>
+                    <td className="text-secondary">{p.id}</td>
+                    <td className="fw-semibold">{p.nombre}</td>
+                    <td>{p.edad}</td>
+                </tr>
+                ))}
+            </tbody>
+            </table>
+        </div>
+        )}
+    </div>
     );
 }

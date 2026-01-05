@@ -1,13 +1,10 @@
 from fastapi import APIRouter, Depends, status
-#, HTTPException
 from sqlalchemy.orm import Session
 from sqlalchemy import select 
-#, delete
 
 from app.db.session import get_db
 from app.models.person import Person
 from app.schemas.person import PersonCreate, PersonOut
-#from app.core.errors import error_response
 
 router = APIRouter(prefix="", tags=["personas"])
 
@@ -26,7 +23,7 @@ def list_persons(db: Session = Depends(get_db)):
     persons = db.scalars(stmt).all()
     return persons
 
-#maybe 
+# boceto de delete que no paso 
 """
 @router.delete("/personas/{person_id}", status_code=status.HTTP_204_NO_CONTENT)
 def delete_person(person_id: int, db: Session = Depends(get_db)):

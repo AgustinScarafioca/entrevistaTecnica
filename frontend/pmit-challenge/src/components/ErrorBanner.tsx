@@ -2,16 +2,20 @@ type Props = { message: string; onClose?: () => void };
 
 export function ErrorBanner({ message, onClose }: Props) {
     return (
-        <div style={{ padding: 12, border: "1px solid #f5c2c7", background: "#f8d7da", borderRadius: 8 }}>
-        <div style={{ display: "flex", justifyContent: "space-between", gap: 12 }}>
-            <strong style={{ color: "#842029" }}>Error</strong>
-            {onClose ? (
-            <button onClick={onClose} style={{ cursor: "pointer" }}>
-                x
-            </button>
-            ) : null}
+        <div className="alert alert-danger d-flex align-items-start justify-content-between gap-3" role="alert">
+        <div>
+            <div className="fw-semibold">Error</div>
+            <div className="small">{message}</div>
         </div>
-        <div style={{ color: "#842029", marginTop: 6 }}>{message}</div>
+
+        {onClose ? (
+            <button
+            type="button"
+            className="btn-close"
+            aria-label="Close"
+            onClick={onClose}
+            />
+        ) : null}
         </div>
     );
 }
