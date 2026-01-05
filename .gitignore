@@ -9,6 +9,7 @@ __pycache__/
 .cache/
 .venv
 
+.env
 
 *.db
 *.sqlite
@@ -17,5 +18,3 @@ __pycache__/
 frontend/node_modules/
 node_modules/
 frontend/dist/
-
-.env
