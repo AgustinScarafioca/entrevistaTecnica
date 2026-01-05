@@ -50,9 +50,9 @@ Base URL (deploy): `https://entrevistatecnica.onrender.com`
 Chequeo simple del servicio.
 
 **200 Response**
-```json```
+```json
 { "status": "ok" }
-
+```
 
 ## Configuracion (Instancia local)
 
@@ -91,11 +91,13 @@ Simplemente completar los datos requeridos por el formulario en pantalla para a√
 ## Tests
 
 ### BackEnd
-```bash```
+```bash
 - cd backend
 - pytest -q
+```
 
 ### FrontEnd:
-```bash```
+```bash
 - cd frontend
 - npm run test:run
+```
