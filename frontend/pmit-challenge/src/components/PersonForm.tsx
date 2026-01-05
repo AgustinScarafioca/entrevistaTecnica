@@ -37,22 +37,43 @@ async function handleSubmit(e: React.FormEvent) {
     }
 
     return (
-        <form onSubmit={handleSubmit} style={{ display: "grid", gap: 10, padding: 12, border: "1px solid #ddd", borderRadius: 8 }}>
-        <h3 style={{ margin: 0 }}>Registrar persona</h3>
+    <form onSubmit={handleSubmit} className="d-grid gap-3">
+        <div>
+        <label className="form-label">Nombre</label>
+        <input
+            className="form-control"
+            value={nombre}
+            onChange={(e) => setNombre(e.target.value)}
+            placeholder="Agustin"
+            maxLength={80}
+        />
+        <div className="form-text">Obligatorio. Mínimo 2 caracteres.</div>
+        </div>
 
-        <label style={{ display: "grid", gap: 6 }}>
-            Nombre
-            <input value={nombre} onChange={(e) => setNombre(e.target.value)} placeholder="Agustin" />
-        </label>
+        <div>
+        <label className="form-label">Edad</label>
+        <input
+            className="form-control"
+            value={edad}
+            onChange={(e) => setEdad(e.target.value)}
+            placeholder="27"
+            type="number"
+            min={0}
+            max={120}
+        />
+        <div className="form-text">Rango permitido: 0 a 120.</div>
+        </div>
 
-        <label style={{ display: "grid", gap: 6 }}>
-            Edad
-            <input value={edad} onChange={(e) => setEdad(e.target.value)} placeholder="27" type="number" min={0} max={120} />
-        </label>
-
-        <button type="submit" disabled={loading} style={{ padding: 10, cursor: loading ? "not-allowed" : "pointer" }}>
-            {loading ? "Guardando..." : "Guardar"}
+        <button type="submit" disabled={loading} className="btn btn-primary">
+        {loading ? (
+            <>
+            <span className="spinner-border spinner-border-sm me-2" aria-hidden="true"></span>
+            Guardando...
+            </>
+        ) : (
+            "Guardar"
+        )}
         </button>
-        </form>
+    </form>
     );
 }
