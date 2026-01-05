@@ -6,10 +6,11 @@ Servicio para **registrar** y **listar** personas (nombre + edad), diseñado par
 
 - **Frontend (Vercel):** https://entrevista-tecnica-gilt.vercel.app
 - **Backend (Render):** https://entrevistatecnica.onrender.com
-  - Health: `GET /health`
-  - Docs (Swagger): `GET /docs`
+  - Health Check: `/health`
+  - Documentación (Swagger): `/docs`
 
 > Nota: En deploy se utiliza **PostgreSQL** (Render). En local se usa **SQLite** por simplicidad (sin cambiar la API).
+> Nota sobre la Demo: El backend está alojado en el plan gratuito de Render. Si la API no responde inmediatamente, es debido al "Cold Start" (la instancia se apaga por inactividad). Aguardar unos 30-60 segundos tras la primera petición para que el servicio despierte.
 
 ## Stack
 
@@ -52,11 +53,7 @@ Chequeo simple del servicio.
 { "status": "ok" }
 
 
-## Modo de uso
-
-Importante: Render, donde esta hosteado el backend presenta un delay en cuentas gratis posterior a un periodo de inactividad, 
-cuando se realice la revision es posible que suceda que no cargue la base de datos. 
-Una vez se ingrese por primera vez a la pagina de Vercel, esperar a que cargue la instancia de la base de datos.
+## Modo de uso (Instancia local)
 
 ## Backend
 Requiere:
@@ -65,7 +62,7 @@ Requiere:
 0. Clonar repositorio de GitHub (git clone `https://github.com/AgustinScarafioca/entrevistaTecnica.git`)
 1. Posicionarse en carpeta de backend (cd entrevistaTecnica cd backend)
 2. Instalar dependencias corriendo desde una consola "pip install -r requirements.txt"
-3. Configurar variables de entorno: 
+3. Configurar variables de entorno (crear file .env en raiz de backend): 
     - ALLOWED_ORIGINS=http://localhost:5173,http://127.0.0.1:5173
     - DATABASE_URL=sqlite:///./app.db (en local usamos por default sqlite)
 4. Levantar el backend con el commando desde la carpeta backend "uvicorn app.main:app --reload --host 127.0.0.1 --port 8000"
