@@ -87,10 +87,12 @@ Nota: Es posible, para evitar instalar las dependencias de python crear un venv 
 
 ## Tests
 
-###BackEnd:
-    - cd backend
-    - pytest -q
+### BackEnd
+```bash```
+cd backend
+pytest -q
 
 ###FrontEnd:
-    - cd frontend
-    - npm run test:run
+```bash```
+cd frontend
+npm run test:run
