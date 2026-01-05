@@ -12,6 +12,8 @@ from app.db.base import Base
 from app.routers.persons import router as persons_router
 from app.core.errors import error_response
 
+from fastapi.responses import HTMLResponse
+
 load_dotenv()
 
 ALLOWED_ORIGINS = os.getenv("ALLOWED_ORIGINS", "*").split(",")
@@ -28,6 +30,49 @@ app.add_middleware(
 )
 
 app.include_router(persons_router)
+
+#added for styling
+@app.get("/", response_class=HTMLResponse)
+def root():
+    return """
+<!doctype html>
+    <html lang="es">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>PmIT Challenge</title>
+        <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: grid;
+            place-items: center;
+            font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+            background: #f6f7f9;
+            color: #111827;
+        }
+        .card {
+            background: #ffffff;
+            padding: 28px 32px;
+            border-radius: 14px;
+            box-shadow: 0 10px 30px rgba(0,0,0,.08);
+            border: 1px solid rgba(0,0,0,.06);
+            text-align: center;
+            max-width: 720px;
+        }
+        h1 { margin: 0 0 10px; font-size: 22px; }
+        p { margin: 0; color: #6b7280; }
+        code { background: #f3f4f6; padding: 2px 6px; border-radius: 6px; }
+        </style>
+    </head>
+    <body>
+        <div class="card">
+        <h1>Bienvenido al challenge técnico de Agustín</h1>
+        <p>Endpoints principales: <code>GET /personas</code> • <code>POST /personas</code> • <code>GET /docs</code></p>
+        </div>
+    </body>
+    </html>
+"""
 
 @app.get("/health")
 def health():
